@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <PreferenceCategory android:title="General">
+        <CheckBoxPreference
+            android:key="comp_layout"
+            android:title="Compact Layout"
+            android:summary="See more stories per screen"
+            android:checked="false"/>
+        <CheckBoxPreference
+            android:key="videos"
+            android:title="Video Autoplay"
+            android:summary="disabled"
+            android:checked="false"/>
+        <ListPreference
+            android:key="text_size"
+            android:title="Text Size"
+            android:dialogTitle="Choose a size"
+            android:entries="@array/text_size"
+            android:entryValues="@array/text_size"
+            android:defaultValue="Normal"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Notifications">
+        <CheckBoxPreference
+            android:key="push_notif"
+            android:title="Push Notifications"
+            android:summary="disabled"
+            android:checked="false"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Data">
+        <CheckBoxPreference android:key="sync"
+            android:title="Background Sync"
+            android:summary="Download articles in background"
+            android:checked="false"/>
+        <SwitchPreference android:key="mob_net"
+            android:title="Sync while on mobile network"
+            android:summary="If turned on, the app will use your mobile data to download articles in the background"
+            android:defaultValue="false"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

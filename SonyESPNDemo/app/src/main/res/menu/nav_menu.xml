@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:title="Home"
+            android:icon="@drawable/home"
+              android:id="@+id/home"/>
+        <item android:title="Football"
+            android:icon="@drawable/football"
+            android:id="@+id/football"/>
+        <item android:title="Cricket"
+            android:icon="@drawable/cricket"
+            android:id="@+id/cricket"/>
+        <item android:title="Tennis"
+            android:icon="@drawable/tennis"
+            android:id="@+id/tennis"/>
+    </group>
+    <item android:title="Personal">
+        <menu>
+            <item android:title="Favorites"
+                android:icon="@drawable/like"
+                android:id="@+id/fav"/>
+            <item android:title="Logout"
+                android:icon="@drawable/exit"
+                android:id="@+id/logout"/>
+        </menu>
+    </item>
+</menu>
