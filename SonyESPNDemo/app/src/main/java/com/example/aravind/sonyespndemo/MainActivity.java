@@ -17,7 +17,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
     private NavigationView mNavDrawerList;
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity{
         }
         else
             Log.i("getSupportActionBar(): ","is null");
-
         mNavDrawerList.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
@@ -51,8 +49,8 @@ public class MainActivity extends AppCompatActivity{
                     case R.id.football: switchFragment(1);break;
                     case R.id.cricket:  switchFragment(2);break;
                     case R.id.tennis:   switchFragment(3);break;
-                    case R.id.fav:  Toast.makeText(getApplicationContext(),"Yet to be implemented",Toast.LENGTH_SHORT).show();break;
-                    case R.id.logout:   Toast.makeText(getApplicationContext(),"Logged out",Toast.LENGTH_SHORT).show();
+                    case R.id.exit:     mDrawerLayout.closeDrawer(mNavDrawerList);
+                                        exitFunction();break;
                 }
                 return true;
             }
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity{
 
     private void switchFragment(int position){
         Fragment fragment = null;
-        int num = -1;
         switch (position){
             case 0 :    mActivityTitle = "Live News";
                         fragment = new LiveFragment();
@@ -78,12 +75,8 @@ public class MainActivity extends AppCompatActivity{
                         break;
             default:    break;
         }
-        if(fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.fragmentHolder, fragment, mActivityTitle).commit();
-        }
-        else
-            Toast.makeText(this,String.valueOf(num),Toast.LENGTH_LONG).show();
         getSupportActionBar().setTitle(mActivityTitle);
         mDrawerLayout.closeDrawer(mNavDrawerList);
     }
@@ -136,25 +129,27 @@ public class MainActivity extends AppCompatActivity{
             mDrawerLayout.closeDrawer(mNavDrawerList);
         else {
             Fragment f = getSupportFragmentManager().findFragmentById(R.id.fragmentHolder);
-            if (f instanceof LiveFragment) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Quit Sony ESPN Demo").setMessage("Are you sure you want to quit ?")
-                        .setPositiveButton("QUIT", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                MainActivity.this.finish();
-                            }
-                        })
-                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                builder.create().show();
-            } else
+            if (f instanceof LiveFragment)
+                exitFunction();
+            else
                 switchFragment(0);
         }
+    }
+    public void exitFunction(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Quit Sony ESPN Demo").setMessage("Are you sure you want to quit ?")
+                .setPositiveButton("QUIT", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        builder.create().show();
     }
 }

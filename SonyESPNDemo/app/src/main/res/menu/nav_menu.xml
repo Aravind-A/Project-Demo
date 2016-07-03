@@ -16,12 +16,9 @@
     </group>
     <item android:title="Personal">
         <menu>
-            <item android:title="Favorites"
-                android:icon="@drawable/like"
-                android:id="@+id/fav"/>
-            <item android:title="Logout"
+            <item android:title="Exit"
                 android:icon="@drawable/exit"
-                android:id="@+id/logout"/>
+                android:id="@+id/exit"/>
         </menu>
     </item>
 </menu>
